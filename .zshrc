@@ -8,9 +8,6 @@ fi
 
 # Generals
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-export LATEST_NVM="23.5.0"
-
-# Further aliases
 alias please="sudo"
 alias weather_full="curl 'https://wttr.in/Frankfurt?1qF/'"
 alias history="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
