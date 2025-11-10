@@ -11,6 +11,7 @@ source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 alias please="sudo"
 alias weather_full="curl 'https://wttr.in/Frankfurt?1qF/'"
 alias history="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+alias vi="nvim"
 
 # pnpm
 case ":$PATH:" in
@@ -54,3 +55,6 @@ SAVEHIST=1000
 HISTSIZE=999
 setopt HIST_EXPIRE_DUPS_FIRST
 setopt EXTENDED_HISTORY
+
+# start tmux
+if [ -z "$TMUX" ]; then tmux; fi
