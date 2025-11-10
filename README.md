@@ -7,28 +7,26 @@ Private configuration files managed with [Gum](https://github.com/charmbracelet/
 1. Make sure you have git installed
 2. Install `gum`
 
-    **🍎 MacOS**
-    ```bash
-    brew install gum
-    ```
-
-    **🐧 Linux**
-    ```bash
-    # Fedora
-    sudo dnf install gum
-    # Arch
-    sudo pacman -S gum
-    # Ubuntu
-    sudo mkdir -p /etc/apt/keyrings
-    curl -fsSL https://repo.charm.sh/apt/gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/charm.gpg
-    echo "deb [signed-by=/etc/apt/keyrings/charm.gpg] https://repo.charm.sh/apt/ * *" | sudo tee /etc/apt/sources.list.d/charm.list
-    sudo apt update && sudo apt install gum
-    ```
+**🍎 MacOS**
+```bash
+brew install gum
+```
+**🐧 Linux**
+```bash
+# Fedora
+sudo dnf install gum
+# Arch
+sudo pacman -S gum
+# Ubuntu
+sudo mkdir -p /etc/apt/keyrings
+curl -fsSL https://repo.charm.sh/apt/gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/charm.gpg
+echo "deb [signed-by=/etc/apt/keyrings/charm.gpg] https://repo.charm.sh/apt/ * *" | sudo tee /etc/apt/sources.list.d/charm.list
+sudo apt update && sudo apt install gum
+```
 3. Clone repository
-
-    ```bash
-    cd ~/ && git clone git@github.com:Necitero/dotfiles.git
-    ```
+```bash
+cd ~/ && git clone git@github.com:Necitero/dotfiles.git
+```
 
 ## 🚀 Usage
 
