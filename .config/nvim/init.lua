@@ -1,0 +1,5 @@
+require('plugins/init')
+require('config/general')
+require('config/colors')
+require('config/mappings')
+require('config/lsp')
