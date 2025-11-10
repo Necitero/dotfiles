@@ -1,15 +1,15 @@
-# Dotfiles
+# 📁 Dotfiles
 
-Private configuration files managed with [Gum](https://github.com/charmbracelet/gum)
+Private configuration files [Gum](https://github.com/charmbracelet/gum)
 
 ## ⚙️ Prerequisites
 
-- Gum
-- zsh
+- [Gum](https://github.com/charmbracelet/gum) - Interactive selection UI (init.sh)
+- zsh - Main shell
 
 ## 🚀 Usage
 
-### Adding files
+### ➕ Adding Files
 
 To add or modify configurations, simply add the file to this repository. Please be aware of the directory:
 
@@ -27,14 +27,14 @@ dotfiles/
 └── .zshrc              # zsh configuration file
 ```
 
-### Symlink files
+### 🔗 Symlink Files
 
 To actually symlink the files so your system can use them, simply do:
 
-   ```bash
-   bash init.sh # --dry-run optional
-   ```
+```bash
+bash init.sh # --dry-run optional
+```
 
-## ⚠️ REMINDER TO SELF
+## ⚠️ Security Notes
 
 Please do NOT upload any .ssh keys, .env variables or anything else. While this is a private repository, let's just stay suspicious of attacks.
