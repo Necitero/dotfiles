@@ -1,18 +1,26 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Simple selective symlink creator for a dotfiles repo.
-# - Only shows repo-root items (excluding .config) and first-level items under .config/
-# - Creates symlinks into $HOME and $HOME/.config respectively
-# - Backs up existing targets safely
-# - Supports gum/fzf selection when available; otherwise uses a numbered fallback
+# Selective symlink creator for a dotfiles repo structured like:
+# /
+# |- init.sh
+# |- README.md
+# |- source/
+#    |- .zshrc
+#    |- .zsh.private
+#    |- .zsh.work
+#    |- .config/
+#       |- nvim/
+#       |- fastfetch/
+#
+# Shows only: /.<root items from source/> and /.config/<first-level items from source/.config/>
+# Links to:   $HOME and $HOME/.config
 #
 # Usage:
-#   bash link-dotfiles.sh               # interactive
-#   bash link-dotfiles.sh --dry-run     # show what would happen
-#   bash link-dotfiles.sh --target /some/home  # link into a different home base
+#   bash init.sh               # interactive
+#   bash init.sh --dry-run
+#   bash init.sh --target /tmp/fakehome
 
-# ------------- Config / args -------------
 DRY_RUN=false
 TARGET_HOME="${HOME}"
 
@@ -25,18 +33,18 @@ while [[ "${1-}" =~ ^- ]]; do
   shift || true
 done
 
-# Absolute path to the repo root (directory of this script)
+have_cmd() { command -v "$1" >/dev/null 2>&1; }
+
 REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SOURCE_DIR="$REPO_DIR/source"
+CONFIG_DIR="$SOURCE_DIR/.config"
 
-# ------------- Helpers -------------
+if [[ ! -d "$SOURCE_DIR" ]]; then
+  echo "Error: expected directory '$SOURCE_DIR' but it does not exist." >&2
+  exit 1
+fi
+
 timestamp() { date +"%Y%m%d-%H%M%S"; }
-
-backup_existing() {
-  local dest="$1"
-  [[ -e "$dest" || -L "$dest" ]] || return 0
-  # If already the correct symlink, skip backup
-  return 0
-}
 
 ensure_parent() {
   local path="$1"
@@ -51,10 +59,9 @@ link_one() {
   local src="$1"
   local dest="$2"
 
-  # If dest is already a symlink to src, skip
+  # Already the correct symlink?
   if [[ -L "$dest" ]]; then
-    local current
-    current="$(readlink "$dest")" || true
+    local current; current="$(readlink "$dest")" || true
     if [[ "$current" == "$src" ]]; then
       echo "✓ Already linked: $dest -> $src"
       return 0
@@ -77,18 +84,15 @@ link_one() {
   fi
 }
 
-have_cmd() { command -v "$1" >/dev/null 2>&1; }
-
-# ------------- Build choice list -------------
-# Root-level items (exclude .git and .config)
+# Build choice list:
+# - Root-level items in source/ (exclude .config and .gitignore etc. if you want)
 mapfile -t ROOT_ITEMS < <(
-  find "$REPO_DIR" -maxdepth 1 -mindepth 1 \
-    ! -name ".git" ! -name ".config" ! -name "init.sh" ! -name "README.md" \
+  find "$SOURCE_DIR" -maxdepth 1 -mindepth 1 \
+    ! -name ".config" \
     -exec basename {} \; | sort
 )
 
-# First-level under .config (if present)
-CONFIG_DIR="$REPO_DIR/.config"
+# - First-level items inside source/.config (if present)
 CONFIG_ITEMS=()
 if [[ -d "$CONFIG_DIR" ]]; then
   mapfile -t CONFIG_ITEMS < <(
@@ -106,19 +110,13 @@ for x in "${CONFIG_ITEMS[@]}"; do
 done
 
 if [[ ${#CHOICES[@]} -eq 0 ]]; then
-  echo "No selectable items found." >&2
+  echo "No selectable items found in $SOURCE_DIR." >&2
   exit 1
 fi
 
-# ------------- Selection UI -------------
-select_with_gum() {
-  gum choose --no-limit "${CHOICES[@]}"
-}
-
-select_with_fzf() {
-  printf '%s\n' "${CHOICES[@]}" | fzf -m
-}
-
+# Selection UI
+select_with_gum() { gum choose --no-limit "${CHOICES[@]}"; }
+select_with_fzf() { printf '%s\n' "${CHOICES[@]}" | fzf -m; }
 select_with_fallback() {
   echo "Select one or more items by number (space/comma separated), then press Enter:"
   local i=1
@@ -127,11 +125,8 @@ select_with_fallback() {
     ((i++))
   done
   printf "Your choice(s): "
-  local input
-  IFS= read -r input
-  # Accept e.g. "1 3 5" or "1,3,5"
+  local input; IFS= read -r input
   input="${input//,/ }"
-  local idx
   local out=()
   for idx in $input; do
     if [[ "$idx" =~ ^[0-9]+$ ]] && (( idx>=1 && idx<=${#CHOICES[@]} )); then
@@ -142,7 +137,6 @@ select_with_fallback() {
 }
 
 echo "Select files and directories to link:"
-SELECTED=""
 if have_cmd gum; then
   SELECTED="$(select_with_gum || true)"
 elif have_cmd fzf; then
@@ -151,24 +145,24 @@ else
   SELECTED="$(select_with_fallback || true)"
 fi
 
-if [[ -z "$SELECTED" ]]; then
+if [[ -z "${SELECTED:-}" ]]; then
   echo "No selection made. Exiting."
   exit 0
 fi
 
-# ------------- Link loop -------------
 echo
 echo "Planned links (target home: $TARGET_HOME):"
 while IFS= read -r item; do
-  # item starts with "/"
+  [[ -z "$item" ]] && continue
+
   if [[ "$item" == "/.config/"* ]]; then
-    name="${item#/.config/}"                 # e.g., "nvim"
-    src="$REPO_DIR/.config/$name"            # repo source
-    dest="$TARGET_HOME/.config/$name"        # home destination
+    name="${item#/.config/}"                         # e.g., "nvim"
+    src="$SOURCE_DIR/.config/$name"                  # e.g., repo/source/.config/nvim
+    dest="$TARGET_HOME/.config/$name"                # e.g., ~/.config/nvim
   else
-    name="${item#/}"                          # e.g., ".zshrc"
-    src="$REPO_DIR/$name"
-    dest="$TARGET_HOME/$name"
+    name="${item#/}"                                 # e.g., ".zshrc"
+    src="$SOURCE_DIR/$name"                          # e.g., repo/source/.zshrc
+    dest="$TARGET_HOME/$name"                        # e.g., ~/.zshrc
   fi
 
   if [[ ! -e "$src" && ! -L "$src" ]]; then

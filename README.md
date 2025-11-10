@@ -1,25 +1,28 @@
 # Dotfiles
 
-Private configuration files managed with [GNU Stow](https://www.gnu.org/software/stow/).
+Private configuration files managed with [Gum](https://github.com/charmbracelet/gum)
 
 ## 🔧 Installation
 
 1. Make sure you have git installed
-2. Install GNU Stow
+2. Install `gum`
 
     **🍎 MacOS**
     ```bash
-    brew install stow
+    brew install gum
     ```
 
     **🐧 Linux**
     ```bash
     # Fedora
-    sudo dnf install stow
+    sudo dnf install gum
     # Arch
-    sudo pacman -S stow
+    sudo pacman -S gum
     # Ubuntu
-    sudo apt install stow
+    sudo mkdir -p /etc/apt/keyrings
+    curl -fsSL https://repo.charm.sh/apt/gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/charm.gpg
+    echo "deb [signed-by=/etc/apt/keyrings/charm.gpg] https://repo.charm.sh/apt/ * *" | sudo tee /etc/apt/sources.list.d/charm.list
+    sudo apt update && sudo apt install gum
     ```
 3. Clone repository
 
@@ -27,15 +30,9 @@ Private configuration files managed with [GNU Stow](https://www.gnu.org/software
     cd ~/ && git clone git@github.com:Necitero/dotfiles.git
     ```
 
-4. Use the magic of stow
-    
-    ```bash
-    stow .
-    ```
-
 ## 🚀 Usage
 
-### Adding files to Stow
+### Adding files
 
 To add or modify configurations, simply add the file to this repository. Please be aware of the directory:
 
@@ -53,12 +50,12 @@ dotfiles/
 └── .zshrc              # zsh configuration file
 ```
 
-### Symlink files with Stow
+### Symlink files
 
 To actually symlink the files so your system can use them, simply do:
 
    ```bash
-   stow .
+   bash init.sh # --dry-run optional
    ```
 
 ## ⚠️ REMINDER TO SELF
