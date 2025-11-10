@@ -1,6 +1,6 @@
 # 📁 Dotfiles
 
-Private configuration files [Gum](https://github.com/charmbracelet/gum)
+Private configuration files with interactive import selection.
 
 ## ⚙️ Prerequisites
 
@@ -13,9 +13,9 @@ Private configuration files [Gum](https://github.com/charmbracelet/gum)
 
 To add or modify configurations, simply add the file to this repository. Please be aware of the directory:
 
-`~/.file` can just be moved to the root of this repository.
+`~/.file` can just be moved to `/source/` of this repository.
 
-`~/.config/.file` should be moved to this repository under `./config`
+`~/.config/.file` should be moved to this repository under `/source/.config/`
 
 **Example**
 
