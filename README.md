@@ -57,9 +57,9 @@ dotfiles/
 
 To actually symlink the files so your system can use them, simply do:
 
-    ```bash
-    stow .
-    ```
+   ```bash
+   stow .
+   ```
 
 ## ⚠️ REMINDER TO SELF
 
