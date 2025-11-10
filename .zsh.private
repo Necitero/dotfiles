@@ -1,0 +1,5 @@
+export PROJECT_PATH="~/Projects"
+export PNPM_HOME="$HOME/.local/share/pnpm/"
+
+export PROJECT_PATH="~/Projects"
+alias neci_web="cd ${PROJECT_PATH}/necitero-website" 
