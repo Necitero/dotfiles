@@ -1,26 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Selective symlink creator for a dotfiles repo structured like:
-# /
-# |- init.sh
-# |- README.md
-# |- source/
-#    |- .zshrc
-#    |- .zsh.private
-#    |- .zsh.work
-#    |- .config/
-#       |- nvim/
-#       |- fastfetch/
-#
-# Shows only: /.<root items from source/> and /.config/<first-level items from source/.config/>
-# Links to:   $HOME and $HOME/.config
-#
-# Usage:
-#   bash init.sh               # interactive
-#   bash init.sh --dry-run
-#   bash init.sh --target /tmp/fakehome
-
 DRY_RUN=false
 TARGET_HOME="${HOME}"
 
@@ -116,7 +96,6 @@ fi
 
 # Selection UI
 select_with_gum() { gum choose --no-limit "${CHOICES[@]}"; }
-select_with_fzf() { printf '%s\n' "${CHOICES[@]}" | fzf -m; }
 select_with_fallback() {
   echo "Select one or more items by number (space/comma separated), then press Enter:"
   local i=1
@@ -139,8 +118,6 @@ select_with_fallback() {
 echo "Select files and directories to link:"
 if have_cmd gum; then
   SELECTED="$(select_with_gum || true)"
-elif have_cmd fzf; then
-  SELECTED="$(select_with_fzf || true)"
 else
   SELECTED="$(select_with_fallback || true)"
 fi
