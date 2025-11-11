@@ -4,7 +4,14 @@ local opts = { noremap = true, silent = true }
 vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>ff", function()
 	builtin.find_files({
-		find_command = { "rg", "--ignore", "--hidden", "--files", "--glob", "!**/.git/**" },
+		find_command = {
+			"rg",
+			"--hidden", -- Include hidden files
+			"--files", -- List all files
+			"--glob",
+			"!**/.git/**", -- Exclude .git files (optional since it's in .ignore)
+		},
+		no_ignore = true,
 	})
 end, { desc = "Telescope find files" })
 vim.keymap.set("n", "<leader>x", ":bd<CR>", opts)
