@@ -9,6 +9,7 @@ local Plug = vim.fn["plug#"]
 
 vim.call("plug#begin")
 
+Plug("nvim-treesitter/nvim-treesitter")
 Plug("catppuccin/nvim", { ["as"] = "catppuccin" })
 Plug("nvim-lualine/lualine.nvim", { ["as"] = "lualine" })
 Plug("nvim-lua/plenary.nvim")
@@ -25,6 +26,7 @@ Plug("hrsh7th/nvim-cmp", { ["as"] = "nvim-cmp" })
 Plug("willothy/nvim-cokeline", { ["as"] = "cokeline" })
 Plug("stevearc/conform.nvim")
 Plug("f-person/git-blame.nvim", { ["as"] = "gitblame" })
+Plug("nvim-tree/nvim-tree.lua", { ["as"] = "nvim-tree" })
 
 vim.call("plug#end")
 
@@ -36,3 +38,4 @@ require("plugins/cokeline")
 require("plugins/conform")
 require("plugins/lualine")
 require("plugins/git-blame")
+require("plugins/nvim-tree")
