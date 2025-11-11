@@ -21,3 +21,5 @@ cursor-text = 232634
 selection-background = 44495d
 selection-foreground = c6d0f5
 split-divider-color = 414559
+window-padding-x = 12
+window-padding-y = 12
