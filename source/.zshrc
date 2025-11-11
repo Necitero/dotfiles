@@ -27,6 +27,10 @@ zstyle ':vcs_info:git*' formats "%K{yellow}%F{black} ⎇ %b "
 zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:*' check-for-changes true
 
+# init nvm
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
 short_pwd() {
   local dirs=("${(s:/:)PWD}")
   local count=${#dirs[@]}
