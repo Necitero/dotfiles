@@ -56,5 +56,3 @@ HISTSIZE=999
 setopt HIST_EXPIRE_DUPS_FIRST
 setopt EXTENDED_HISTORY
 
-# start tmux
-if [ -z "$TMUX" ]; then tmux; fi
