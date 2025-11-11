@@ -24,7 +24,7 @@ Plug("hrsh7th/cmp-cmdline")
 Plug("hrsh7th/nvim-cmp", { ["as"] = "nvim-cmp" })
 Plug("willothy/nvim-cokeline", { ["as"] = "cokeline" })
 Plug("stevearc/conform.nvim")
-Plug("f-person/git-blame.nvim")
+Plug("f-person/git-blame.nvim", { ["as"] = "gitblame" })
 
 vim.call("plug#end")
 
@@ -35,3 +35,4 @@ require("plugins/nvim-cmp")
 require("plugins/cokeline")
 require("plugins/conform")
 require("plugins/lualine")
+require("plugins/git-blame")
