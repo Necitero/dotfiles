@@ -65,19 +65,29 @@ link_one() {
 }
 
 # Build choice list:
-# - Root-level items in source/ (exclude .config and .gitignore etc. if you want)
-mapfile -t ROOT_ITEMS < <(
-  find "$SOURCE_DIR" -maxdepth 1 -mindepth 1 \
-    ! -name ".config" \
-    -exec basename {} \; | sort
+# Build ROOT_ITEMS from first-level entries in $SOURCE_DIR, excluding .config
+ROOT_ITEMS=()
+while IFS= read -r x; do ROOT_ITEMS+=("$x"); done < <(
+  for p in "$SOURCE_DIR"/.* "$SOURCE_DIR"/*; do
+    [ -e "$p" ] || continue
+    base="${p##*/}"
+    # skip dot entries and .config
+    [ "$base" = "." ] || [ "$base" = ".." ] && continue
+    [ "$base" = ".config" ] && continue
+    printf '%s\n' "$base"
+  done | LC_ALL=C sort
 )
 
-# - First-level items inside source/.config (if present)
+# Build CONFIG_ITEMS from first-level entries in $SOURCE_DIR/.config
 CONFIG_ITEMS=()
-if [[ -d "$CONFIG_DIR" ]]; then
-  mapfile -t CONFIG_ITEMS < <(
-    find "$CONFIG_DIR" -maxdepth 1 -mindepth 1 \
-      -exec basename {} \; | sort
+if [ -d "$CONFIG_DIR" ]; then
+  while IFS= read -r x; do CONFIG_ITEMS+=("$x"); done < <(
+    for p in "$CONFIG_DIR"/.* "$CONFIG_DIR"/*; do
+      [ -e "$p" ] || continue
+      base="${p##*/}"
+      [ "$base" = "." ] || [ "$base" = ".." ] && continue
+      printf '%s\n' "$base"
+    done | LC_ALL=C sort
   )
 fi
 
