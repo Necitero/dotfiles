@@ -20,7 +20,7 @@ To add or modify configurations, simply add the file to this repository. Please 
 **Example**
 
 ```
-dotfiles/
+source/
 ├── .config/            # Configuration packages
 │   ├── nvim/           # Neovim configuration
 │   └── fastfetch/      # Fastfetch configuration
