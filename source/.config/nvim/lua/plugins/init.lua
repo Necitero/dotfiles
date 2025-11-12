@@ -29,6 +29,8 @@ Plug("f-person/git-blame.nvim", { ["as"] = "gitblame" })
 Plug("nvim-tree/nvim-tree.lua", { ["as"] = "nvim-tree" })
 Plug("ludovicchabant/vim-gutentags")
 Plug("lewis6991/gitsigns.nvim")
+Plug("hrsh7th/cmp-vsnip")
+Plug("hrsh7th/vim-vsnip")
 
 vim.call("plug#end")
 
