@@ -6,10 +6,12 @@ vim.keymap.set("n", "<leader>ff", function()
 	builtin.find_files({
 		find_command = {
 			"rg",
-			"--hidden", -- Include hidden files
-			"--files", -- List all files
+			"--hidden",
+			"--files",
 			"--glob",
-			"!**/.git/**", -- Exclude .git files (optional since it's in .ignore)
+			"!**/.git/**",
+			"--glob",
+			"!**/node_modules/**",
 		},
 		no_ignore = true,
 	})
