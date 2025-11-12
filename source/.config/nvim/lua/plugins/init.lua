@@ -27,6 +27,7 @@ Plug("willothy/nvim-cokeline", { ["as"] = "cokeline" })
 Plug("stevearc/conform.nvim")
 Plug("f-person/git-blame.nvim", { ["as"] = "gitblame" })
 Plug("nvim-tree/nvim-tree.lua", { ["as"] = "nvim-tree" })
+Plug("ludovicchabant/vim-gutentags")
 
 vim.call("plug#end")
 
