@@ -16,6 +16,19 @@ vim.keymap.set("n", "<leader>ff", function()
 		no_ignore = true,
 	})
 end, { desc = "Telescope find files" })
+vim.keymap.set("n", "<leader>fg", function()
+	builtin.live_grep({
+		additional_args = function(_)
+			return {
+				"--hidden",
+				"--glob",
+				"!**/.git/**",
+				"--glob",
+				"!**/node_modules/**",
+			}
+		end,
+	})
+end, { desc = "Telescope live grep (including hidden files)" })
 vim.keymap.set("n", "<leader>x", ":bd<CR>", opts)
 vim.keymap.set("n", "<leader>l", ":bprevious<CR>", opts)
 vim.keymap.set("n", "<leader>h", ":bnext<CR>", opts)
