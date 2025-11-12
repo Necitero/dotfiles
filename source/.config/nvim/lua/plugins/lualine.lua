@@ -123,21 +123,43 @@ ins_left({
 })
 ins_left({
 	function()
-		local msg = "No Active Lsp"
 		local buf_ft = vim.api.nvim_get_option_value("filetype", { buf = 0 })
-		local clients = vim.lsp.get_clients()
-		if next(clients) == nil then
-			return msg
+		local clients = vim.lsp.get_clients({ bufnr = 0 })
+		if #clients == 0 then
+			return "No Active LSP"
 		end
-		for _, client in ipairs(clients) do
-			local filetypes = client.config.filetypes
-			if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-				return client.name
+
+		-- order of preference
+		local prefer = { "ts_ls", "tsserver", "eslint", "lua_ls", "jsonls" }
+		-- hide from display
+		local hide = { tailwindcss = true }
+
+		-- helper: does client support this buffer's filetype?
+		local function supports_buf_ft(c)
+			local fts = c.config and c.config.filetypes
+			return (not fts) or vim.tbl_contains(fts, buf_ft)
+		end
+
+		-- try preferred clients first
+		for _, name in ipairs(prefer) do
+			for _, c in ipairs(clients) do
+				if c.name == name and supports_buf_ft(c) and not hide[c.name] then
+					return c.name
+				end
 			end
 		end
-		return msg
+
+		-- otherwise pick the first non-hidden that supports this ft
+		for _, c in ipairs(clients) do
+			if not hide[c.name] and supports_buf_ft(c) then
+				return c.name
+			end
+		end
+
+		-- fallback (will show tailwindcss only if it's truly the only one)
+		return "tailwindcss"
 	end,
-	icon = " LSP:",
+	icon = " ",
 	color = { fg = "#ffffff", gui = "bold" },
 })
 ins_right({

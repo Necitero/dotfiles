@@ -65,18 +65,10 @@ conform.setup({
 	-- Override built-ins with the same conditional
 	formatters = {
 		stylua = {},
-
-		prettierd = {
-			prefer_local = "node_modules/.bin",
-			condition = function(ctx)
-				return project_uses_prettier(ctx.dirname)
-			end,
-		},
-		prettier = {
-			prefer_local = "node_modules/.bin",
-			condition = function(ctx)
-				return project_uses_prettier(ctx.dirname)
-			end,
+		formatters = {
+			stylua = {},
+			prettierd = { prefer_local = "node_modules/.bin" },
+			prettier = { prefer_local = "node_modules/.bin" },
 		},
 	},
 })
