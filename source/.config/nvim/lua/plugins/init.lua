@@ -31,6 +31,7 @@ Plug("ludovicchabant/vim-gutentags")
 Plug("lewis6991/gitsigns.nvim")
 Plug("hrsh7th/cmp-vsnip")
 Plug("hrsh7th/vim-vsnip")
+Plug("mistricky/codesnap.nvim", { ["do"] = "make" })
 
 vim.call("plug#end")
 
@@ -43,3 +44,4 @@ require("plugins/conform")
 require("plugins/lualine")
 require("plugins/git-blame")
 require("plugins/nvim-tree")
+require("plugins/codesnap")
