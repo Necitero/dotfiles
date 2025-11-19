@@ -12,22 +12,17 @@ require("cokeline").setup({
 	components = {
 		{
 			text = function(buffer)
-				return (buffer.index ~= 1) and "▏" or ""
-			end,
-			fg = function()
-				return get_hex("Normal", "fg")
-			end,
-		},
-
-		{
-			text = function(buffer)
 				return "    " .. buffer.devicon.icon
 			end,
 			fg = function(buffer)
 				return buffer.devicon.color
 			end,
 		},
-
+		{
+			text = function(buffer)
+				return buffer.unique_prefix
+			end,
+		},
 		{
 			text = function(buffer)
 				return buffer.filename .. " "
