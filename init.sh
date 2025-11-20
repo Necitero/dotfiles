@@ -71,28 +71,29 @@ link_one() {
 }
 
 # Build choice list:
-ROOT_ITEMS=()
-while IFS= read -r x; do ROOT_ITEMS+=("$x"); done < <(
-  for p in "$SOURCE_DIR"/.* "$SOURCE_DIR"/*; do
+list_entries() {
+  local dir="$1"
+  local skip_config="${2:-false}"
+
+  for p in "$dir"/.* "$dir"/*; do
     [ -e "$p" ] || continue
-    base="${p##*/}"
-    # skip dot entries and .config
+    base=${p##*/}
     [ "$base" = "." ] || [ "$base" = ".." ] && continue
-    [ "$base" = ".config" ] && continue
+    if $skip_config && [ "$base" = ".config" ]; then
+      continue
+    fi
     printf '%s\n' "$base"
   done | LC_ALL=C sort
+}
+ROOT_ITEMS=()
+while IFS= read -r x; do ROOT_ITEMS+=("$x"); done < <(
+  list_entries "$SOURCE_DIR" true
 )
 
-# Build CONFIG_ITEMS from first-level entries in $SOURCE_DIR/.config
 CONFIG_ITEMS=()
 if [ -d "$CONFIG_DIR" ]; then
   while IFS= read -r x; do CONFIG_ITEMS+=("$x"); done < <(
-    for p in "$CONFIG_DIR"/.* "$CONFIG_DIR"/*; do
-      [ -e "$p" ] || continue
-      base="${p##*/}"
-      [ "$base" = "." ] || [ "$base" = ".." ] && continue
-      printf '%s\n' "$base"
-    done | LC_ALL=C sort
+    list_entries "$CONFIG_DIR"
   )
 fi
 
