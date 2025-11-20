@@ -1,6 +1,6 @@
 # 📁 Dotfiles
 
-Private configuration files with interactive import selection.
+Personal configuration files with interactive import selection for Linux and macOS.
 
 ## ⚙️ Prerequisites
 
@@ -11,11 +11,11 @@ Private configuration files with interactive import selection.
 
 ### ➕ Adding Files
 
-To add or modify configurations, simply add the file to this repository. Please be aware of the directory:
+To add or modify configurations, simply add the file to this repository. Please note the directory layout:
 
-`~/.file` can just be moved to `/source/` of this repository.
+`~/<file>` should be placed in the `/source/` directory of this repository.
 
-`~/.config/.file` should be moved to this repository under `/source/.config/`
+`~/.config/<file>` should be placed in the `/source/.config/` directory of this repository.
 
 **Example**
 
@@ -29,7 +29,7 @@ source/
 
 ### 🔗 Symlink Files
 
-To actually symlink the files so your system can use them, simply do:
+To actually symlink the files so your system can use them, simply run:
 
 ```bash
 bash init.sh # --dry-run optional
@@ -37,9 +37,9 @@ bash init.sh # --dry-run optional
 
 ## 🔧 Config Specifics
 
-### 👻 Ghostty (MacOS)
+### 👻 Ghostty (macOS)
 
-Ghostty's default config path is in MacOS's `$HOME/Library/` directory. To ensure there is a proper symlink, additionally to the script, execute this command:
+Ghostty's default config path is located in macOS's `$HOME/Library/` directory. To ensure there is a proper symlink, in addition to the script, run this command:
 
 ```bash
 ln -s ~/.config/ghostty/config $HOME/Library/Application\ Support/com.mitchellh.ghostty/config
@@ -47,10 +47,17 @@ ln -s ~/.config/ghostty/config $HOME/Library/Application\ Support/com.mitchellh.
 
 ## 📝 Notes
 
-## 🌐 Cloning / Forking / Contributions
+### 📄 License
 
-Feel free to just fully rip off anything! My config is under constant maintenance, trying to optimize my workflow, setup, styles, etc. If you feel like you need something from here, just take it! No matter if it's a specific configuration I have, the whole init.sh, anything.
+This repository is released under the MIT license.  
+Feel free to copy, modify, or use anything for your own setup.
 
-## ⚠️ Security Notes
+### 🌐 Cloning / Forking / Contributions
 
-Please do NOT upload any .ssh keys, .env variables or anything else. While this is a private repository, let's just stay suspicious of attacks.
+Feel free to copy anything! My config is under constant maintenance, trying to optimize my workflow, setup, styles, etc. If you feel like you need something from here, just take it! No matter if it's a specific configuration I have, the whole init.sh, anything.
+
+When it comes to contributions (PRs, issues, etc.): I will most likely not respond to them. This is mainly my personal repository, just made public so people can use it for inspiration or clones/forks.
+
+### ⚠️ Security Notes
+
+Please do NOT upload any SSH keys, environment variables or any other sensitive information. This is a reminder to myself, but also to anyone who wants to clone this repo.
