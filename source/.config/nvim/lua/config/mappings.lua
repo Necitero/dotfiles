@@ -40,3 +40,4 @@ vim.keymap.set("x", "J", ":m '>+1<CR>gv=gv", vim.tbl_extend("force", opts, { des
 vim.keymap.set("x", "K", ":m '<-2<CR>gv=gv", vim.tbl_extend("force", opts, { desc = "Move selection up" }))
 vim.keymap.set("n", "<leader>b", ":NvimTreeToggle<CR>", opts)
 vim.keymap.set("x", "<C-s>", ":CodeSnap<CR>", opts)
+vim.keymap.set("n", "<C-a>", vim.lsp.buf.code_action, opts)
