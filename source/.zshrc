@@ -1,9 +1,7 @@
-# Get environment
-if [ -f ~/.zsh.private ]; then
-    source ~/.zsh.private
-fi
-if [ -f ~/.zsh.work ]; then
-    source ~/.zsh.work
+# Get additional zsh configs
+# Can be configured per system if you are using different aliases or exports for different systems
+if [ -f ~/.zshextra ]; then
+    source ~/.zshextra
 fi
 
 # Generals
