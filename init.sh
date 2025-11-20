@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+
+# NOTICE
+# As I am not great at shell scripting, this file includes a lot of ai-generated lines.
+# The rest of this repository is written by me or copied from documentations.
+# Please just ... close your eyes here, thanks! <3
+
 set -euo pipefail
 
 DRY_RUN=false
@@ -7,10 +13,9 @@ TARGET_HOME="${HOME}"
 while [[ "${1-}" =~ ^- ]]; do
   case "$1" in
     --dry-run) DRY_RUN=true ;;
-    --target) shift; TARGET_HOME="${1:?--target requires a path}";;
     *) echo "Unknown option: $1" >&2; exit 1;;
   esac
-  shift || true
+  shift
 done
 
 have_cmd() { command -v "$1" >/dev/null 2>&1; }
@@ -24,6 +29,7 @@ if [[ ! -d "$SOURCE_DIR" ]]; then
   exit 1
 fi
 
+# Create timestamp for backups
 timestamp() { date +"%Y%m%d-%H%M%S"; }
 
 ensure_parent() {
@@ -65,7 +71,6 @@ link_one() {
 }
 
 # Build choice list:
-# Build ROOT_ITEMS from first-level entries in $SOURCE_DIR, excluding .config
 ROOT_ITEMS=()
 while IFS= read -r x; do ROOT_ITEMS+=("$x"); done < <(
   for p in "$SOURCE_DIR"/.* "$SOURCE_DIR"/*; do
@@ -143,13 +148,13 @@ while IFS= read -r item; do
   [[ -z "$item" ]] && continue
 
   if [[ "$item" == "/.config/"* ]]; then
-    name="${item#/.config/}"                         # e.g., "nvim"
-    src="$SOURCE_DIR/.config/$name"                  # e.g., repo/source/.config/nvim
-    dest="$TARGET_HOME/.config/$name"                # e.g., ~/.config/nvim
+    name="${item#/.config/}"
+    src="$SOURCE_DIR/.config/$name"
+    dest="$TARGET_HOME/.config/$name"
   else
-    name="${item#/}"                                 # e.g., ".zshrc"
-    src="$SOURCE_DIR/$name"                          # e.g., repo/source/.zshrc
-    dest="$TARGET_HOME/$name"                        # e.g., ~/.zshrc
+    name="${item#/}"
+    src="$SOURCE_DIR/$name"
+    dest="$TARGET_HOME/$name"
   fi
 
   if [[ ! -e "$src" && ! -L "$src" ]]; then
