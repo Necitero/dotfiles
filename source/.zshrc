@@ -40,17 +40,20 @@ precmd() {
   vcs_info
   local pathinfo="$(short_pwd)"
   local gitinfo="${vcs_info_msg_0_}"
+  local end_segment
 
-  prompt_end(){
-    print -P "%f%k%F{yellow}%f"
-  }
+  if [[ -n $gitinfo ]]; then
+    end_segment="%k%F{yellow}◗%f"
+  else
+    end_segment="%k%F{blue}◗%f"
+  fi
+
   PROMPT="
-%K{black}%F{white} %* %f%k%K{blue}%F{black} ${pathinfo}  ${gitinfo}$(prompt_end)
+%F{black}◖%K{black}%F{white} %* %f%k%K{blue}%F{black} ${pathinfo} ${gitinfo}${end_segment}
 > "
 }
 
-# zsh-history and zsh-autosuggestions
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+# zsh-history 
 setopt APPEND_HISTORY
 setopt SHARE_HISTORY
 HISTFILE=$HOME/.zhistory
