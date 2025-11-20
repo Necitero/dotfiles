@@ -35,14 +35,21 @@ To actually symlink the files so your system can use them, simply do:
 bash init.sh # --dry-run optional
 ```
 
-## Special Notes
+## 🔧 Config Specifics
 
-### Ghostty (MacOS)
+### 👻 Ghostty (MacOS)
 
 Ghostty's default config path is in MacOS's `$HOME/Library/` directory. To ensure there is a proper symlink, additionally to the script, execute this command:
+
 ```bash
 ln -s ~/.config/ghostty/config $HOME/Library/Application\ Support/com.mitchellh.ghostty/config
 ```
+
+## 📝 Notes
+
+## 🌐 Cloning / Forking / Contributions
+
+Feel free to just fully rip off anything! My config is under constant maintenance, trying to optimize my workflow, setup, styles, etc. If you feel like you need something from here, just take it! No matter if it's a specific configuration I have, the whole init.sh, anything.
 
 ## ⚠️ Security Notes
 
