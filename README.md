@@ -60,4 +60,4 @@ When it comes to contributions (PRs, issues, etc.): I will most likely not respo
 
 ### ⚠️ Security Notes
 
-Please do NOT upload any SSH keys, environment variables or any other sensitive information. This is a reminder to myself, but also to anyone who wants to clone this repo.
+Please do NOT upload any SSH keys, environment variables or any other sensitive information. This is a reminder to myself, but also to anyone who wants to clone this repo. I recommend using the `.zshextra` file for more personal information and not publishing this in any repository
