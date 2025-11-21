@@ -38,6 +38,14 @@ vim.keymap.set("x", "H", "<gv", vim.tbl_extend("force", opts, { desc = "Decrease
 vim.keymap.set("x", "L", ">gv", vim.tbl_extend("force", opts, { desc = "Increase indent" }))
 vim.keymap.set("x", "J", ":m '>+1<CR>gv=gv", vim.tbl_extend("force", opts, { desc = "Move selection down" }))
 vim.keymap.set("x", "K", ":m '<-2<CR>gv=gv", vim.tbl_extend("force", opts, { desc = "Move selection up" }))
-vim.keymap.set("n", "<leader>b", ":NvimTreeToggle<CR>", opts)
+vim.keymap.set("n", "<leader>b", function()
+	local view = require("nvim-tree.view")
+	if view.is_visible() then
+		vim.cmd("NvimTreeClose")
+	else
+		vim.cmd("NvimTreeOpen")
+		vim.cmd("wincmd o") -- Make current window only (fullscreen)
+	end
+end, opts)
 vim.keymap.set("x", "<C-s>", ":CodeSnap<CR>", opts)
 vim.keymap.set("n", "<C-a>", vim.lsp.buf.code_action, opts)
