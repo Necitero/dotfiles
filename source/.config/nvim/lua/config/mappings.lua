@@ -29,6 +29,8 @@ vim.keymap.set("n", "<leader>fg", function()
 		end,
 	})
 end, { desc = "Telescope live grep (including hidden files)" })
+vim.keymap.set("n", "<C-d>", "<C-d>zz", { noremap = true })
+vim.keymap.set("n", "<C-u>", "<C-u>zz", { noremap = true })
 vim.keymap.set("n", "<leader>x", ":bd<CR>", opts)
 vim.keymap.set("n", "<leader>l", ":bprevious<CR>", opts)
 vim.keymap.set("n", "<leader>h", ":bnext<CR>", opts)
