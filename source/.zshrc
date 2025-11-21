@@ -47,8 +47,8 @@ precmd() {
   fi
 
   PROMPT="
-%F{white}◖%K{white}%F{black} %F{black}◢%k%f%K{black} %* %f%F{blue}◢%f%k%K{blue}%F{black} ${pathinfo} ${gitinfo}${end_segment}
-> "
+%F{white}◖%K{white}%F{black}  %F{black}◢%k%f%K{black} %* %f%F{blue}◢%f%k%K{blue}%F{black} ${pathinfo} ${gitinfo}${end_segment}
+❯ "
 }
 
 # zsh-history 
