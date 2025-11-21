@@ -20,7 +20,7 @@ esac
 # Custom prompt colors
 fpath+=~/.zfunc; autoload -Uz compinit; compinit
 autoload -Uz vcs_info
-zstyle ':vcs_info:git*' formats "%K{yellow}%F{black} ⎇ %b "
+zstyle ':vcs_info:git*' formats "%F{yellow}◢%f%K{yellow}%F{black} ⎇ %b "
 zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:*' check-for-changes true
 
@@ -47,7 +47,7 @@ precmd() {
   fi
 
   PROMPT="
-%F{black}◖%K{black}%F{white} %* %f%k%K{blue}%F{black} ${pathinfo} ${gitinfo}${end_segment}
+%F{white}◖%K{white}%F{black} %F{black}◢%k%f%K{black} %* %f%F{blue}◢%f%k%K{blue}%F{black} ${pathinfo} ${gitinfo}${end_segment}
 > "
 }
 
