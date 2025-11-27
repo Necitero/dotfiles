@@ -45,6 +45,18 @@ Ghostty's default config path is located in macOS's `$HOME/Library/` directory. 
 ln -s ~/.config/ghostty/config $HOME/Library/Application\ Support/com.mitchellh.ghostty/config
 ```
 
+### 👾 TMUX
+
+If you want to use `TMUX` using the `source/.tmux.conf` file found in this repository, make sure you have [TPM](https://github.com/tmux-plugins/tpm) installed.
+
+### 🐚 zsh-autosuggestions
+
+It is recommended to install zsh-autosuggestions manually to ensure the default path set in `.zshrc` is using the correct file.
+
+```bash
+git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
+```
+
 ## 📝 Notes
 
 ### 📄 License
