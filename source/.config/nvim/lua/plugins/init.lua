@@ -9,7 +9,7 @@ local Plug = vim.fn["plug#"]
 
 vim.call("plug#begin")
 
-Plug("nvim-treesitter/nvim-treesitter")
+Plug("nvim-treesitter/nvim-treesitter", { ["branch"] = "master", ["build"] = ":TSUpdate" })
 Plug("catppuccin/nvim", { ["as"] = "catppuccin" })
 Plug("nvim-lualine/lualine.nvim", { ["as"] = "lualine" })
 Plug("nvim-lua/plenary.nvim")
@@ -45,3 +45,4 @@ require("plugins/lualine")
 require("plugins/git-blame")
 require("plugins/nvim-tree")
 require("plugins/codesnap")
+require("plugins/tree-sitter")
