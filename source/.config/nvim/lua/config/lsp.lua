@@ -4,13 +4,8 @@ for _, server in ipairs(servers) do
 end
 vim.diagnostic.show()
 vim.diagnostic.config({
-	virtual_text = {
-		enable = true,
-		prefix = "●",
-		format = function(diagnostic)
-			return diagnostic.message
-		end,
-	},
+	virtual_text = false,
+	underline = true,
 })
 -- Make sure TS LSPs don't fight Prettier
 vim.api.nvim_create_autocmd("LspAttach", {
@@ -24,4 +19,18 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			client.server_capabilities.documentRangeFormattingProvider = false
 		end
 	end,
+})
+
+vim.o.updatetime = 250
+local function open_diag_float()
+	vim.diagnostic.open_float(nil, {
+		focusable = false,
+		scope = "cursor",
+		source = "if_many",
+		border = "rounded",
+	})
+end
+
+vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+	callback = open_diag_float,
 })
