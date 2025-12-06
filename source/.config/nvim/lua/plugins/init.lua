@@ -31,7 +31,7 @@ Plug("ludovicchabant/vim-gutentags")
 Plug("lewis6991/gitsigns.nvim")
 Plug("hrsh7th/cmp-vsnip")
 Plug("hrsh7th/vim-vsnip")
-Plug("mistricky/codesnap.nvim", { ["do"] = "make" })
+Plug("mistricky/codesnap.nvim")
 
 vim.call("plug#end")
 
