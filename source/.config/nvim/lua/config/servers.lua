@@ -13,5 +13,6 @@ local servers = {
 	"jsonls",
 	"tailwindcss",
 	"yamlls",
+	"html",
 }
 return servers
