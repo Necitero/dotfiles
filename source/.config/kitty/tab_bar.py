@@ -12,7 +12,7 @@ from kitty.tab_bar import (
 
 opts = get_options()
 
-lavender = as_rgb(int("0000FF", 16))
+lavender = as_rgb(int("f4b8e4", 16))
 surface1 = as_rgb(int("c6d0f5", 16))
 base = as_rgb(int("232634", 16))
 window_icon = ""
