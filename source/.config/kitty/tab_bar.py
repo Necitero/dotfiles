@@ -89,6 +89,7 @@ def _draw_left_status(screen: Screen):
     screen.cursor.x = left_status_length
     return screen.cursor.x
 
+
 def get_cwd():
     cwd = ""
     tab_manager = get_boss().active_tab_manager
@@ -127,6 +128,7 @@ def get_cwd():
 
     return cwd
 
+
 def _draw_right_status(screen: Screen, is_last: bool) -> int:
     layout_fg = surface1 if active_tab_layout_name == "fat" else lavender
     cells = [
@@ -163,5 +165,14 @@ def _draw_right_status(screen: Screen, is_last: bool) -> int:
     screen.cursor.bg = 0
 
     # update cursor position
-    screen.cursor.x = max(screen.cursor.x, screen.columns - right_status_length)
+    screen.cursor.x = max(
+        screen.cursor.x, screen.columns - right_status_length)
     return screen.cursor.x
+
+
+def truncate_str(input_str, max_length):
+    if len(input_str) > max_length:
+        half = max_length // 2
+        return input_str[:half] + "…" + input_str[-half:]
+    else:
+        return input_str
