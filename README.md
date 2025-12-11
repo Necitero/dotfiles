@@ -73,3 +73,7 @@ When it comes to contributions (PRs, issues, etc.): I will most likely not respo
 ### ⚠️ Security Notes
 
 Please do NOT upload any SSH keys, environment variables or any other sensitive information. This is a reminder to myself, but also to anyone who wants to clone this repo. I recommend using the `.zshextra` file for more personal information and not publishing this in any repository
+
+### Other resources
+
+- Wallpaper "[catppuccin-cafe.png](./source/.config/wallpapers/catppuccin-cafe.png)" from _patrika_ on [Alpha Coders](https://wall.alphacoders.com/big.php?i=1386838), edited using [WallpaperThemeConverter](https://github.com/NotNeelPatel/WallpaperThemeConverter) by NotNeelPatel.
