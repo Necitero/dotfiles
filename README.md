@@ -77,3 +77,5 @@ Please do NOT upload any SSH keys, environment variables or any other sensitive 
 ### Other resources
 
 - Wallpaper "[catppuccin-cafe.png](./source/.config/wallpapers/catppuccin-cafe.png)" from _patrika_ on [Alpha Coders](https://wall.alphacoders.com/big.php?i=1386838), edited using [WallpaperThemeConverter](https://github.com/NotNeelPatel/WallpaperThemeConverter) by NotNeelPatel.
+
+- GTK Theme provided by the amazing Catppuccin team at [Gnome Look](https://www.gnome-look.org/p/1996675)
