@@ -92,3 +92,22 @@ bash init.sh
 ```
 
 3. Open nvim and let vim-plug install all plugins
+
+### Theming
+
+#### GTK
+
+1. Install gtk-murrine-engine
+
+```
+sudo dnf install gtk-murrine-engine
+```
+
+2. Get configs
+
+You will need the .themes directory, as well as .config/gtk-4.0/
+
+```
+cd ~/dotfiles
+bash init.sh
+```
