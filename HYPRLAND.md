@@ -111,3 +111,7 @@ You will need the .themes directory, as well as .config/gtk-4.0/
 cd ~/dotfiles
 bash init.sh
 ```
+
+3. TODO
+
+Remove gtk-4.0, gtk-3.0 and Kvantum theme directories. Instead, make a theme.sh where everything is downloaded to the proper place immediately. Alternatively: Download to ~/dotfiles/themes (.gitignore it!) and link from there. Config files may still be included here.
