@@ -33,9 +33,14 @@ sudo dnf install git gum zsh
 git clone https://github.com/Necitero/dotfiles
 ```
 
-4. Copy the minimum required configs (zsh, hypr, rofi, wallpapers)
+4. Install quickshell
+```
+sudo dnf install quickshell
+```
 
-5. Install rofi, rofi-emoji and rofi-calc
+5. Copy the minimum required configs (zsh, hypr, rofi, wallpapers)
+
+6. Install rofi, rofi-emoji and rofi-calc
 
 Rofi will work as our main application launcher.
 
@@ -66,7 +71,7 @@ sudo make install
 
 Rofi can now be opened using SUPER+R
 
-6. ZSH
+7. ZSH
 
 As most of my setup is done with ZSH in mind, I recommend setting ZSH as the default shell.
 
