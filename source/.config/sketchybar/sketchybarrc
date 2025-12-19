@@ -4,9 +4,9 @@ bar=(
     position=top
     height=36
     y_offset=8
-    margin=12
+    margin=16
     color=0xCC303446
-    corner_radius=8
+    corner_radius=10
     blur_radius=40
     shadow=on
 )
