@@ -9,6 +9,7 @@ source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 alias please="sudo"
 alias weather_full="curl 'https://wttr.in/Frankfurt?1qF/'"
 alias history="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+alias clear_nvim="rm ~/.local/state/nvim/swap/*.(swp|swo)"
 
 # pnpm
 case ":$PATH:" in
