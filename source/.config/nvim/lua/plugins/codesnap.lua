@@ -3,7 +3,7 @@ require("codesnap").setup({
 	highlight_color = "#ffffff20",
 	show_workspace = true,
 	snapshot_config = {
-		theme = "candy",
+		theme = "vercel@https://raw.githubusercontent.com/Railly/one-hunter-vscode/refs/heads/main/themes/OneHunter-Vercel-color-theme.json",
 		window = {
 			mac_window_bar = false,
 			shadow = {
@@ -23,8 +23,6 @@ require("codesnap").setup({
 				font_family = "Pacifico",
 			},
 		},
-		themes_folders = {},
-		fonts_folders = {},
 		line_number_color = "#495162",
 		command_output_config = {
 			prompt = "❯",
@@ -59,11 +57,11 @@ require("codesnap").setup({
 			stops = {
 				{
 					position = 0,
-					color = "#6bcba5",
+					color = "#303446",
 				},
 				{
 					position = 1,
-					color = "#caf4c2",
+					color = "#292c3c",
 				},
 			},
 		},

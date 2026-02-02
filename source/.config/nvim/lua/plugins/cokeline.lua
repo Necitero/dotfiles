@@ -12,15 +12,16 @@ require("cokeline").setup({
 	components = {
 		{
 			text = function(buffer)
-				return "    " .. buffer.devicon.icon
+				local icon = (buffer.devicon and buffer.devicon.icon) or " "
+				return "    " .. icon
 			end,
 			fg = function(buffer)
-				return buffer.devicon.color
+				return (buffer.devicon and buffer.devicon.color) or get_hex("Comment", "fg")
 			end,
 		},
 		{
 			text = function(buffer)
-				return buffer.unique_prefix
+				return buffer.unique_prefix or " "
 			end,
 		},
 		{
@@ -35,10 +36,10 @@ require("cokeline").setup({
 		{
 			text = function(buffer)
 				local d = buffer.diagnostics or {}
-				local e = d.errors or 0
-				local w = d.warnings or 0
-				local i = d.infos or 0
-				local h = d.hints or 0
+				local e = d.errors or d.error or 0
+				local w = d.warnings or d.warning or 0
+				local i = d.infos or d.info or 0
+				local h = d.hints or d.hint or 0
 
 				if e > 0 then
 					return string.format(" %d ", e)
@@ -66,12 +67,6 @@ require("cokeline").setup({
 				else
 					return get_hex("Comment", "fg")
 				end
-			end,
-		},
-		{
-			text = "󰖭",
-			on_click = function(_, _, _, _, buffer)
-				buffer:delete()
 			end,
 		},
 		{

@@ -3,9 +3,7 @@ local servers = require("config.servers")
 
 cmp.setup({
 	snippet = {
-		expand = function(args)
-			vim.fn["vsnip#anonymous"](args.body)
-		end,
+		expand = function(_) end,
 	},
 	window = {
 		completion = cmp.config.window.bordered(),
