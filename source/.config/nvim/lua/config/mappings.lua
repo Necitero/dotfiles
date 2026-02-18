@@ -1,4 +1,3 @@
-local builtin = require("telescope.builtin")
 local opts = { noremap = true, silent = true }
 
 -- Define Leader
@@ -26,39 +25,20 @@ vim.keymap.set("n", "<C-l>", "<C-w>l", { noremap = true, silent = true })
 
 -- Plugin Mappings
 vim.keymap.set("n", "<leader>ff", function()
-	builtin.find_files({
-		find_command = {
-			"rg",
-			"--hidden",
-			"--files",
-			"--glob",
-			"!**/.git/**",
-			"--glob",
-			"!**/node_modules/**",
-		},
-		no_ignore = true,
-	})
-end, { desc = "Telescope find files" })
+	require("snacks").picker.files()
+end, { desc = "Find Files" })
+
 vim.keymap.set("n", "<leader>fg", function()
-	builtin.live_grep({
-		additional_args = function(_)
-			return {
-				"--hidden",
-				"--glob",
-				"!**/.git/**",
-				"--glob",
-				"!**/node_modules/**",
-			}
-		end,
-	})
-end, { desc = "Telescope live grep (including hidden files)" })
-vim.keymap.set("n", "<leader>b", function()
-	local view = require("nvim-tree.view")
-	if view.is_visible() then
-		vim.cmd("NvimTreeClose")
-	else
-		vim.cmd("NvimTreeOpen")
-		vim.cmd("wincmd o") -- Make current window only (fullscreen)
-	end
-end, opts)
+	require("snacks").picker.grep()
+end, { desc = "Find Text" })
 vim.keymap.set("x", "<C-s>", ":CodeSnap<CR>", opts)
+vim.keymap.set("n", "<leader>b", function()
+	require("snacks").explorer({
+		hidden = true,
+		ignored = true,
+		exclude = {
+			".git",
+			".DS_Store",
+		},
+	})
+end, { desc = "File Explorer" })
