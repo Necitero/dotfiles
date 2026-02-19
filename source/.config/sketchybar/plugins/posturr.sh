@@ -125,11 +125,13 @@ COLOR="0xFFC6D0F5"
 
 if [[ "${STATUS_LINE}" == *"Good Posture"* ]]; then
   COLOR="0xFFA6D189"
-  LABEL="Good"
+  LABEL="Good Posture"
+  ICON="󱉉"
 elif [[ "${STATUS_LINE}" == *"Slouch"* ]]; then
   COLOR="0xFFE78284"
-  LABEL="Slouching"
+  LABEL="SHRIMPING!"
+  ICON="🦐"
 fi
 
-sketchybar --set "${NAME}" icon="${ICON}" label="${LABEL}" icon.color="${COLOR}"
+sketchybar --set "${NAME}" icon="${ICON}" label="${LABEL}" icon.color="${COLOR}" label.color="${COLOR}"
 
