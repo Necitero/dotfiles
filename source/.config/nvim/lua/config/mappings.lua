@@ -40,5 +40,10 @@ vim.keymap.set("n", "<leader>b", function()
 			".git",
 			".DS_Store",
 		},
+		layout = {
+			layout = {
+				position = "right",
+			},
+		},
 	})
 end, { desc = "File Explorer" })
