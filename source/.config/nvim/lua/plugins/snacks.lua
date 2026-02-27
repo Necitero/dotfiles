@@ -5,6 +5,9 @@ require("snacks").setup({
 			files = {
 				hidden = true,
 				ignored = true,
+				exclude = {
+					"node_modules",
+				},
 			},
 			grep = {
 				hidden = true,
@@ -12,6 +15,9 @@ require("snacks").setup({
 				args = {
 					"--hidden",
 					"--no-ignore",
+				},
+				exclude = {
+					"node_modules",
 				},
 			},
 		},
