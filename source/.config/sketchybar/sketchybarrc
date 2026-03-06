@@ -50,6 +50,44 @@ sketchybar --add item front_app left \
            --set front_app icon.drawing=off script="$PLUGIN_DIR/front_app.sh" \
            --subscribe front_app front_app_switched
 
+sketchybar --add item power right \
+           --set power \
+             icon="⏻" \
+             label.drawing=off \
+             icon.padding_right=12 \
+             icon.color=0xFFcad3f5 \
+             background.drawing=on \
+             background.color=0xFF414559 \
+             script="$PLUGIN_DIR/power.sh" \
+           --subscribe power mouse.clicked
+
+sketchybar --add item power.sleep popup.power \
+           --set power.sleep \
+             icon="󰤄" \
+             label="Sleep" \
+             icon.color=0xFF8caaee \
+             background.drawing=off \
+             script="$PLUGIN_DIR/power.sh" \
+           --subscribe power.sleep mouse.clicked
+
+sketchybar --add item power.restart popup.power \
+           --set power.restart \
+             icon="" \
+             label="Restart" \
+             icon.color=0xFFe5c890 \
+             background.drawing=off \
+             script="$PLUGIN_DIR/power.sh" \
+           --subscribe power.restart mouse.clicked
+
+sketchybar --add item power.shutdown popup.power \
+           --set power.shutdown \
+             icon="󰐥" \
+             label="Shutdown" \
+             icon.color=0xFFe78284 \
+             background.drawing=off \
+             script="$PLUGIN_DIR/power.sh" \
+           --subscribe power.shutdown mouse.clicked
+
 sketchybar --add item clock right \
            --set clock icon.drawing=off update_freq=10 script="$PLUGIN_DIR/clock.sh"
 
