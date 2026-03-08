@@ -1,7 +1,12 @@
 export PROJECT_PATH="~/Projects"
 export PNPM_HOME="$HOME/.local/share/pnpm/"
-
 export PROJECT_PATH="~/Projects"
-alias neci_web="cd ${PROJECT_PATH}/necitero-website" 
-alias tmux='tmux -u'
+
+alias to_portfolio="cd ${PROJECT_PATH}/portfolio" 
+alias to_ehoi="cd ${PROJECT_PATH}/ehoi-package-id-grabber" 
+alias to_dotfiles="cd ~/dotfiles" 
+
+alias portfolio="to_portfolio && nvim"
+alias ehoi="to_ehoi && nvim"
+alias dotfiles="to_dotfiles && nvim"
 
