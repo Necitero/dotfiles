@@ -37,18 +37,6 @@ bash init.sh # --dry-run optional
 
 ## 🔧 Config Specifics
 
-### 👻 Ghostty (macOS)
-
-Ghostty's default config path is located in macOS's `$HOME/Library/` directory. To ensure there is a proper symlink, in addition to the script, run this command:
-
-```bash
-ln -s ~/.config/ghostty/config $HOME/Library/Application\ Support/com.mitchellh.ghostty/config
-```
-
-### 👾 TMUX
-
-If you want to use `TMUX` using the `source/.tmux.conf` file found in this repository, make sure you have [TPM](https://github.com/tmux-plugins/tpm) installed.
-
 ### 🐚 zsh-autosuggestions
 
 It is recommended to install zsh-autosuggestions manually to ensure the default path set in `.zshrc` is using the correct file.
