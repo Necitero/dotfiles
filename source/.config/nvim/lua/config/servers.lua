@@ -8,7 +8,6 @@ local servers = {
 	"lua_ls",
 	"jsonls",
 	"tailwindcss",
-	"yamlls",
 	"html",
 	"bashls",
 }
