@@ -1,6 +1,6 @@
 local servers = require("config.servers")
 for _, server in ipairs(servers) do
-	vim.lsp.enable(server)
+	pcall(vim.lsp.enable, server)
 end
 vim.diagnostic.show()
 vim.diagnostic.config({
@@ -14,7 +14,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		if not client then
 			return
 		end
-		if client.name == "tsserver" or client.name == "ts_ls" then
+		if client.name == "tsserver" then
 			client.server_capabilities.documentFormattingProvider = false
 			client.server_capabilities.documentRangeFormattingProvider = false
 		end
@@ -31,6 +31,6 @@ local function open_diag_float()
 	})
 end
 
-vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+vim.api.nvim_create_autocmd({ "CursorHold" }, {
 	callback = open_diag_float,
 })

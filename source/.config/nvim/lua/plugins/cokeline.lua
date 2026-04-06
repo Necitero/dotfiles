@@ -3,10 +3,10 @@ local get_hex = require("cokeline.hlgroups").get_hl_attr
 require("cokeline").setup({
 	default_hl = {
 		fg = function(buffer)
-			return buffer.is_focused and get_hex("ColorColumn", "bg") or get_hex("Comment", "fg")
+			return buffer.is_focused and get_hex("Normal", "fg") or get_hex("Comment", "fg")
 		end,
 		bg = function(buffer)
-			return buffer.is_focused and get_hex("Normal", "fg") or "NONE"
+			return buffer.is_focused and get_hex("Normal", "bg") or "NONE"
 		end,
 	},
 	components = {

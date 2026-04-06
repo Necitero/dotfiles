@@ -5,14 +5,11 @@ end
 
 conform.setup({
 	format_on_save = {
-		lsp_fallback = true, -- if no external formatter, use LSP
+		lsp_fallback = true,
 		timeout_ms = 1000,
 	},
-
-	-- Only list the actual built-in names here
 	formatters_by_ft = {
 		lua = { "stylua" },
-
 		javascript = { "prettierd", "prettier" },
 		javascriptreact = { "prettierd", "prettier" },
 		typescript = { "prettierd", "prettier" },
@@ -24,25 +21,9 @@ conform.setup({
 		scss = { "prettierd", "prettier" },
 		markdown = { "prettierd", "prettier" },
 	},
-
-	-- Override built-ins with the same conditional
 	formatters = {
 		stylua = {},
 		prettierd = { prefer_local = "node_modules/.bin" },
 		prettier = { prefer_local = "node_modules/.bin" },
 	},
-})
-
--- Keep TS LSPs from formatting so Prettier is the single source of truth
-vim.api.nvim_create_autocmd("LspAttach", {
-	callback = function(args)
-		local client = vim.lsp.get_client_by_id(args.data.client_id)
-		if not client then
-			return
-		end
-		if client.name == "tsserver" or client.name == "ts_ls" then
-			client.server_capabilities.documentFormattingProvider = false
-			client.server_capabilities.documentRangeFormattingProvider = false
-		end
-	end,
 })

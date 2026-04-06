@@ -1,19 +1,16 @@
--- Eviline config for lualine
--- Author: shadmansaleh
--- Credit: glepnir
 local lualine = require("lualine")
 local colors = {
-	bg = "#202328",
-	fg = "#bbc2cf",
-	yellow = "#ECBE7B",
-	cyan = "#008080",
-	darkblue = "#081633",
-	green = "#98be65",
-	orange = "#FF8800",
-	violet = "#a9a1e1",
-	magenta = "#c678dd",
-	blue = "#51afef",
-	red = "#ec5f67",
+	bg = "#303446",
+	fg = "#c6d0f5",
+	yellow = "#e5c890",
+	cyan = "#81c8be",
+	darkblue = "#8caaee",
+	green = "#a6d189",
+	orange = "#ef9f76",
+	violet = "#ca9ee6",
+	magenta = "#f4b8e4",
+	blue = "#85c1dc",
+	red = "#e78284",
 }
 local conditions = {
 	buffer_not_empty = function()
@@ -29,19 +26,8 @@ local conditions = {
 	end,
 }
 local config = {
-	options = {
-		component_separators = "",
-		section_separators = "",
-		theme = "catppuccin",
-	},
-	sections = {
-		lualine_a = {},
-		lualine_b = {},
-		lualine_y = {},
-		lualine_z = {},
-		lualine_c = {},
-		lualine_x = {},
-	},
+	options = { component_separators = "", section_separators = "" },
+	sections = { lualine_a = {}, lualine_b = {}, lualine_y = {}, lualine_z = {}, lualine_c = {}, lualine_x = {} },
 	inactive_sections = {
 		lualine_a = {},
 		lualine_b = {},
@@ -59,13 +45,6 @@ local function ins_right(component)
 end
 ins_left({
 	function()
-		return "▊"
-	end,
-	color = { fg = colors.blue },
-	padding = { left = 0, right = 1 },
-})
-ins_left({
-	function()
 		return ""
 	end,
 	color = function()
@@ -73,13 +52,13 @@ ins_left({
 			n = colors.red,
 			i = colors.green,
 			v = colors.blue,
-			[""] = colors.blue,
+			["␖"] = colors.blue,
 			V = colors.blue,
 			c = colors.magenta,
 			no = colors.red,
 			s = colors.orange,
 			S = colors.orange,
-			[""] = colors.orange,
+			["␓"] = colors.orange,
 			ic = colors.yellow,
 			R = colors.violet,
 			Rv = colors.violet,
@@ -95,52 +74,26 @@ ins_left({
 	end,
 	padding = { right = 1 },
 })
-ins_left({
-	"filesize",
-	cond = conditions.buffer_not_empty,
-})
-ins_left({
-	"filename",
-	cond = conditions.buffer_not_empty,
-	color = { fg = colors.magenta, gui = "bold" },
-})
-ins_left({ "location" })
-ins_left({ "progress", color = { fg = colors.fg, gui = "bold" } })
-ins_left({
-	"diagnostics",
-	sources = { "nvim_diagnostic" },
-	symbols = { error = " ", warn = " ", info = " " },
-	diagnostics_color = {
-		error = { fg = colors.red },
-		warn = { fg = colors.yellow },
-		info = { fg = colors.cyan },
-	},
-})
+ins_left({ "filename", cond = conditions.buffer_not_empty, color = { fg = colors.magenta, gui = "bold" } })
+ins_left({ "branch", icon = "", color = { fg = colors.violet, gui = "bold" } })
 ins_left({
 	function()
 		return "%="
 	end,
 })
-ins_left({
+ins_right({
 	function()
 		local buf_ft = vim.api.nvim_get_option_value("filetype", { buf = 0 })
 		local clients = vim.lsp.get_clients({ bufnr = 0 })
 		if #clients == 0 then
 			return "No Active LSP"
 		end
-
-		-- order of preference
 		local prefer = { "ts_ls", "tsserver", "eslint", "lua_ls", "jsonls" }
-		-- hide from display
 		local hide = { tailwindcss = true }
-
-		-- helper: does client support this buffer's filetype?
-		local function supports_buf_ft(c)
+		function supports_buf_ft(c)
 			local fts = c.config and c.config.filetypes
 			return (not fts) or vim.tbl_contains(fts, buf_ft)
 		end
-
-		-- try preferred clients first
 		for _, name in ipairs(prefer) do
 			for _, c in ipairs(clients) do
 				if c.name == name and supports_buf_ft(c) and not hide[c.name] then
@@ -148,52 +101,14 @@ ins_left({
 				end
 			end
 		end
-
-		-- otherwise pick the first non-hidden that supports this ft
 		for _, c in ipairs(clients) do
 			if not hide[c.name] and supports_buf_ft(c) then
 				return c.name
 			end
 		end
-
-		-- fallback (will show tailwindcss only if it's truly the only one)
 		return "tailwindcss"
 	end,
 	icon = " ",
 	color = { fg = "#ffffff", gui = "bold" },
-})
-ins_right({
-	"o:encoding",
-	fmt = string.upper,
-	cond = conditions.hide_in_width,
-	color = { fg = colors.green, gui = "bold" },
-})
-ins_right({
-	"fileformat",
-	fmt = string.upper,
-	icons_enabled = false,
-	color = { fg = colors.green, gui = "bold" },
-})
-ins_right({
-	"branch",
-	icon = "",
-	color = { fg = colors.violet, gui = "bold" },
-})
-ins_right({
-	"diff",
-	symbols = { added = " ", modified = "󰝤 ", removed = " " },
-	diff_color = {
-		added = { fg = colors.green },
-		modified = { fg = colors.orange },
-		removed = { fg = colors.red },
-	},
-	cond = conditions.hide_in_width,
-})
-ins_right({
-	function()
-		return "▊"
-	end,
-	color = { fg = colors.blue },
-	padding = { left = 1 },
 })
 lualine.setup(config)

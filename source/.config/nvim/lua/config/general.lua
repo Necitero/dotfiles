@@ -1,4 +1,5 @@
 local set = vim.o
+local setg = vim.g
 set.number = true
 set.relativenumber = true
 set.tabstop = 4
@@ -6,7 +7,12 @@ set.softtabstop = 4
 set.expandtab = true
 set.shiftwidth = 4
 set.autoindent = true
-vim.g.splitright = true
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-vim.o.signcolumn = "yes:4"
+set.signcolumn = "yes:4"
+set.backup = false
+set.cmdheight = 0
+set.termguicolors = true
+setg.splitright = true
+setg.loaded_netrw = 1
+setg.loaded_netrwPlugin = 1
+
+

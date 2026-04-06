@@ -1,35 +1,24 @@
-local plug_path = vim.fn.stdpath("config") .. "/autoload/plug.vim"
-if vim.fn.filereadable(plug_path) == 1 then
-	vim.cmd.source(plug_path)
-else
-	vim.api.nvim_err_writeln("vim-plug not found! Expected at: " .. plug_path)
-end
-
-local Plug = vim.fn["plug#"]
-
-vim.call("plug#begin")
-
-Plug("nvim-lua/plenary.nvim")
-Plug("nvim-treesitter/nvim-treesitter", { ["branch"] = "master", ["do"] = ":TSUpdate" })
-Plug("catppuccin/nvim", { ["as"] = "catppuccin" })
-Plug("folke/snacks.nvim")
-Plug("nvim-lualine/lualine.nvim", { ["as"] = "lualine" })
-Plug("nvim-tree/nvim-web-devicons")
-Plug("mason-org/mason.nvim", { ["as"] = "mason" })
-Plug("mason-org/mason-lspconfig.nvim", { ["as"] = "mason-lspconfig" })
-Plug("neovim/nvim-lspconfig")
-Plug("hrsh7th/cmp-nvim-lsp")
-Plug("hrsh7th/cmp-buffer")
-Plug("hrsh7th/cmp-path")
-Plug("hrsh7th/cmp-cmdline")
-Plug("hrsh7th/nvim-cmp", { ["as"] = "nvim-cmp" })
-Plug("willothy/nvim-cokeline", { ["as"] = "cokeline" })
-Plug("stevearc/conform.nvim")
-Plug("f-person/git-blame.nvim", { ["as"] = "gitblame" })
-Plug("lewis6991/gitsigns.nvim")
-Plug("mistricky/codesnap.nvim", { ["tag"] = "v2.0.0-beta.17" })
-
-vim.call("plug#end")
+vim.pack.add({
+	{ src = "https://github.com/nvim-lua/plenary.nvim" },
+	{ src = "https://github.com/catppuccin/nvim", name = "catppuccin" },
+	{ src = "https://github.com/folke/snacks.nvim" },
+	{ src = "https://github.com/nvim-lualine/lualine.nvim", name = "lualine" },
+	{ src = "https://github.com/nvim-tree/nvim-web-devicons" },
+	{ src = "https://github.com/mason-org/mason.nvim", name = "mason" },
+	{ src = "https://github.com/mason-org/mason-lspconfig.nvim", name = "mason-lspconfig" },
+	{ src = "https://github.com/neovim/nvim-lspconfig" },
+	{ src = "https://github.com/hrsh7th/cmp-nvim-lsp" },
+	{ src = "https://github.com/hrsh7th/cmp-buffer" },
+	{ src = "https://github.com/hrsh7th/cmp-path" },
+	{ src = "https://github.com/hrsh7th/cmp-cmdline" },
+	{ src = "https://github.com/hrsh7th/nvim-cmp", name = "nvim-cmp" },
+	{ src = "https://github.com/willothy/nvim-cokeline", name = "cokeline" },
+	{ src = "https://github.com/stevearc/conform.nvim" },
+	{ src = "https://github.com/f-person/git-blame.nvim", name = "gitblame" },
+	{ src = "https://github.com/lewis6991/gitsigns.nvim" },
+	{ src = "https://github.com/mistricky/codesnap.nvim" },
+	{ src = "https://github.com/norcalli/nvim-colorizer.lua" },
+})
 
 require("plugins/mason")
 require("plugins/nvim-cmp")
@@ -38,5 +27,5 @@ require("plugins/cokeline")
 require("plugins/conform")
 require("plugins/lualine")
 require("plugins/git-blame")
-require("plugins/tree-sitter")
 require("plugins/codesnap")
+require("colorizer").setup()

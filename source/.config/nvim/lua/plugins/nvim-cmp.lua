@@ -16,15 +16,39 @@ cmp.setup({
 		["<C-f>"] = cmp.mapping.scroll_docs(4),
 		["<C-Space>"] = cmp.mapping.complete(),
 		["<C-e>"] = cmp.mapping.abort(),
+
 		["<CR>"] = cmp.mapping.confirm({
 			behavior = cmp.ConfirmBehavior.Replace,
-			select = true,
+			select = false,
 		}),
+		["<Tab>"] = cmp.mapping(function(fallback)
+			if cmp.visible() then
+				cmp.select_next_item()
+			else
+				fallback()
+			end
+		end, { "i", "s" }),
+		["<S-Tab>"] = cmp.mapping(function(fallback)
+			if cmp.visible() then
+				cmp.select_prev_item()
+			else
+				fallback()
+			end
+		end, { "i", "s" }),
 	}),
 	sources = cmp.config.sources({
-		{ name = "nvim_lsp" },
+		{ name = "nvim_lsp", priority = 1000 },
+		{ name = "path" },
 	}, {
-		{ name = "buffer" },
+		{
+			name = "buffer",
+			priority = 500,
+			option = {
+				get_bufnrs = function()
+					return vim.api.nvim_list_bufs()
+				end,
+			},
+		},
 	}),
 })
 cmp.setup.cmdline({ "/", "?" }, {
