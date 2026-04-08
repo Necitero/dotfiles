@@ -84,6 +84,10 @@
       "rev": "ad9ede6a9cddf16cedbd31b8932d6dcdee9b716e",
       "src": "https://github.com/folke/snacks.nvim"
     },
+    "tree-sitter-manager.nvim": {
+      "rev": "211d1a2408e4346005b2b124fd3068394eea94f0",
+      "src": "https://github.com/romus204/tree-sitter-manager.nvim"
+    },
     "vim-polyglot": {
       "rev": "f061eddb7cdcc614c8406847b2bfb53099832a4e",
       "src": "https://github.com/sheerun/vim-polyglot"
