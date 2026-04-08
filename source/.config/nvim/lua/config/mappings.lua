@@ -25,6 +25,13 @@ keymap("n", "<C-h>", "<C-w>h", { noremap = true, silent = true })
 keymap("n", "<C-j>", "<C-w>j", { noremap = true, silent = true })
 keymap("n", "<C-k>", "<C-w>k", { noremap = true, silent = true })
 keymap("n", "<C-l>", "<C-w>l", { noremap = true, silent = true })
+vim.api.nvim_create_autocmd("TextYankPost", {
+	desc = "Highlight when yanking (copying) text",
+	group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
+	callback = function()
+		vim.highlight.on_yank()
+	end,
+})
 
 -- Plugin Mappings
 keymap("x", "<C-s>", ":CodeSnap<CR>", opts)
