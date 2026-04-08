@@ -26,34 +26,38 @@ keymap("n", "<C-j>", "<C-w>j", { noremap = true, silent = true })
 keymap("n", "<C-k>", "<C-w>k", { noremap = true, silent = true })
 keymap("n", "<C-l>", "<C-w>l", { noremap = true, silent = true })
 vim.api.nvim_create_autocmd("TextYankPost", {
-	desc = "Highlight when yanking (copying) text",
-	group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
-	callback = function()
-		vim.highlight.on_yank()
-	end,
+    desc = "Highlight when yanking (copying) text",
+    group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
+    callback = function()
+        vim.highlight.on_yank()
+    end,
 })
 
 -- Plugin Mappings
+-- Codesnap
 keymap("x", "<C-s>", ":CodeSnap<CR>", opts)
+-- Snacks
 keymap("n", "<leader>ff", function()
-	require("snacks").picker.files()
+    require("snacks").picker.files()
 end, { desc = "Find Files" })
 
 keymap("n", "<leader>fg", function()
-	require("snacks").picker.grep()
+    require("snacks").picker.grep()
 end, { desc = "Find Text" })
 keymap("n", "<leader>b", function()
-	require("snacks").explorer({
-		hidden = true,
-		ignored = true,
-		exclude = {
-			".git",
-			".DS_Store",
-		},
-		layout = {
-			layout = {
-				position = "right",
-			},
-		},
-	})
+    require("snacks").explorer({
+        hidden = true,
+        ignored = true,
+        exclude = {
+            ".git",
+            ".DS_Store",
+        },
+        layout = {
+            layout = {
+                position = "right",
+            },
+        },
+    })
 end, { desc = "File Explorer" })
+-- Markview
+vim.api.nvim_set_keymap("n", "<leader>m", "<CMD>Markview splitToggle<CR>", { desc = "Toggle Markview split"});

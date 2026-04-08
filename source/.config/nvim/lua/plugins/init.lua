@@ -18,6 +18,7 @@ vim.pack.add({
     { src = gh .. "stevearc/conform.nvim" },
     { src = gh .. "f-person/git-blame.nvim",          name = "gitblame" },
     { src = gh .. "lewis6991/gitsigns.nvim" },
+    { src = gh .. "OXY2DEV/markview.nvim" },
     { src = gh .. "mistricky/codesnap.nvim" },
 })
 
@@ -29,6 +30,11 @@ require("plugins/conform")
 require("plugins/lualine")
 require("plugins/git-blame")
 require("plugins/codesnap")
+require("markview").setup({
+    preview = {
+        enable = false
+    }
+})
 require("tree-sitter-manager").setup({
     ensure_installed = {
         "lua",
