@@ -46,7 +46,7 @@
         <key>foreground</key>
         <string>#949cbb</string>
         <key>fontStyle</key>
-        <string>italic</string>
+        <string></string>
       </dict>
     </dict>
 
@@ -120,7 +120,7 @@
         <key>foreground</key>
         <string>#8caaee</string>
         <key>fontStyle</key>
-        <string>italic</string>
+        <string></string>
       </dict>
     </dict>
 
@@ -134,7 +134,7 @@
         <key>foreground</key>
         <string>#e5c890</string>
         <key>fontStyle</key>
-        <string>italic</string>
+        <string></string>
       </dict>
     </dict>
 
@@ -160,7 +160,7 @@
         <key>foreground</key>
         <string>#ea999c</string>
         <key>fontStyle</key>
-        <string>italic</string>
+        <string></string>
       </dict>
     </dict>
 
@@ -234,7 +234,7 @@
         <key>foreground</key>
         <string>#ef9f76</string>
         <key>fontStyle</key>
-        <string>italic</string>
+        <string></string>
       </dict>
     </dict>
 
@@ -326,7 +326,7 @@
       <key>name</key>
       <string>Markdown Emphasis</string>
       <key>scope</key>
-      <string>markup.bold, markup.italic, markup.strikethrough, markup.quote, punctuation.definition.quote.begin, markup.list.bullet, punctuation.definition.list.begin.markdown, markup.link, markup.underline.link, string.other.link.title.markdown</string>
+      <string>markup.bold, markup., markup.strikethrough, markup.quote, punctuation.definition.quote.begin, markup.list.bullet, punctuation.definition.list.begin.markdown, markup.link, markup.underline.link, string.other.link.title.markdown</string>
       <key>settings</key>
       <dict>
         <key>foreground</key>
