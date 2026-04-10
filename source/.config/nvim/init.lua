@@ -1,5 +1,2 @@
-require("config/general")
-require("config/mappings")
-require("config/lsp")
-require("plugins/init")
-require("config/colors")
+require("general")
+require("mappings")

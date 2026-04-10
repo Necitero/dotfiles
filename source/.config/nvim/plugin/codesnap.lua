@@ -1,3 +1,6 @@
+vim.pack.add({
+    { src = "https://github.com/mistricky/codesnap.nvim" },
+})
 require("codesnap").setup({
     show_line_number = true,
     highlight_color = "#ffffff20",

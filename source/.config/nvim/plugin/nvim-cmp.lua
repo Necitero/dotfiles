@@ -1,5 +1,13 @@
+vim.pack.add({
+    { src = "https://github.com/hrsh7th/nvim-cmp",    name = "nvim-cmp" },
+    { src = "https://github.com/hrsh7th/cmp-nvim-lsp" },
+    { src = "https://github.com/hrsh7th/cmp-buffer" },
+    { src = "https://github.com/hrsh7th/cmp-path" },
+    { src = "https://github.com/hrsh7th/cmp-cmdline" },
+
+})
 local cmp = require("cmp")
-local servers = require("config.servers")
+local servers = require("servers")
 
 cmp.setup({
     snippet = {

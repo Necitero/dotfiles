@@ -14,5 +14,3 @@ set.termguicolors = true
 setg.splitright = true
 setg.loaded_netrw = 1
 setg.loaded_netrwPlugin = 1
-
-

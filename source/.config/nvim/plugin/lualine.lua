@@ -1,3 +1,6 @@
+vim.pack.add({
+    { src = "https://github.com/nvim-lualine/lualine.nvim", name = "lualine" },
+})
 local lualine = require("lualine")
 local colors = {
     bg = "#303446",
