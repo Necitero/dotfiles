@@ -11,6 +11,7 @@ require("snacks").setup({
                 ignored = true,
                 exclude = {
                     "node_modules",
+                    ".next",
                 },
             },
             grep = {
@@ -22,6 +23,7 @@ require("snacks").setup({
                 },
                 exclude = {
                     "node_modules",
+                    ".next",
                 },
             },
         },
