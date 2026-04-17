@@ -40,10 +40,13 @@ keymap("x", "<C-s>", ":CodeSnap<CR>", opts)
 keymap("n", "<leader>ff", function()
     require("snacks").picker.files()
 end, { desc = "Find Files" })
-
 keymap("n", "<leader>fg", function()
     require("snacks").picker.grep()
 end, { desc = "Find Text" })
+keymap("n", "<leader>fr", function()
+    require("snacks").picker.resume()
+end, { desc = "Find Text" })
+
 keymap("n", "<leader>b", function()
     require("snacks").explorer({
         hidden = true,
@@ -60,4 +63,4 @@ keymap("n", "<leader>b", function()
     })
 end, { desc = "File Explorer" })
 -- Markview
-vim.api.nvim_set_keymap("n", "<leader>m", "<CMD>Markview splitToggle<CR>", { desc = "Toggle Markview split"});
+vim.api.nvim_set_keymap("n", "<leader>m", "<CMD>Markview splitToggle<CR>", { desc = "Toggle Markview split" });
