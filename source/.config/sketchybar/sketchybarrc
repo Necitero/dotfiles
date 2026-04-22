@@ -99,16 +99,4 @@ sketchybar --add item battery right \
            --set battery update_freq=120 icon.color=0xFFe5c890 script="$PLUGIN_DIR/battery.sh" \
            --subscribe battery system_woke power_source_change
 
-sketchybar --add item posturr right \
-  --set posturr \
-    update_freq=1 \
-    script="$PLUGIN_DIR/posturr.sh" \
-    icon="󱉉" \
-    label="…" \
-    icon.color=0xFFC6D0F5 \
-    label.color=0xFFC6D0F5 \
-    icon.drawing=on \
-    label.drawing=on
-
-
 sketchybar --update
