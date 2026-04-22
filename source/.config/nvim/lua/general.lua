@@ -11,6 +11,7 @@ set.signcolumn = "yes:4"
 set.backup = false
 set.cmdheight = 0
 set.termguicolors = true
+set.swapfile = false
 setg.splitright = true
 setg.loaded_netrw = 1
 setg.loaded_netrwPlugin = 1

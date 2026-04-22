@@ -12,6 +12,7 @@ require("snacks").setup({
                 exclude = {
                     "node_modules",
                     ".next",
+                    "vendor",
                 },
             },
             grep = {
@@ -24,6 +25,7 @@ require("snacks").setup({
                 exclude = {
                     "node_modules",
                     ".next",
+                    "vendor",
                 },
             },
         },
