@@ -9,6 +9,7 @@ vim.g.mapleader = " "
 keymap("n", "<C-d>", "<C-d>zz", opts)
 keymap("n", "<C-u>", "<C-u>zz", opts)
 keymap("n", "<leader>x", ":bd<CR>", opts)
+keymap("n", "<leader>X", ":bd!<CR>", opts)
 keymap("n", "<leader>l", ":bprevious<CR>", opts)
 keymap("n", "<leader>h", ":bnext<CR>", opts)
 keymap("n", "<Leader>cs", "<cmd>nohlsearch<CR>", { desc = "Clear search" })
