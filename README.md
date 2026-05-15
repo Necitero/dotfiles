@@ -1,3 +1,6 @@
+> [!WARNING]
+> I am switching to (Codeberg)[https://codeberg.org/Necitero]. This repository will not be updated anymore
+
 # 📁 Dotfiles
 
 Personal configuration files with interactive import selection for Linux and macOS.
